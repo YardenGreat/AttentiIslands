@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <head>
-
+	<link rel="stylesheet" href="Style.css" type="text/css"> 
 </head>
-<html>
-	
+<html>	
 	<body>
-		<canvas id="myCanvas" width="10000" height="10000"></canvas>
-		<script src="Islands.js"></script>
+		<div id="inputDiv">
+				Board width: <input type="text" value="10" id="boardWidth">
+				Board Height: <input type="text" value="10" id="boardHeight">
+				<input type="button" value="Randomize" onclick="drawGrid(context)">
+		</div>
+		<div id="canvasContainer">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<input type="button" id="solveButton" value="Solve">
+		<script src="Setup.js"></script>
+		<script src="Randomize.js"></script>
+		<script src="Solve.js"></script>
 	</body>
 
 </html>
