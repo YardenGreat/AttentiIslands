@@ -1,6 +1,6 @@
 "use strict";
 
-var board;
+var board, boardWidth, boardHeight;
 function getSquare(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -9,9 +9,10 @@ function getSquare(canvas, evt) {
     };
 }
 
-function drawGrid(context) {
-    var boardWidth = document.getElementById("boardWidth").value;
-    var boardHeight = document.getElementById("boardHeight").value;
+function drawGrid(context, isDrawEnabled) {
+    handleInputDiv();
+    boardWidth = document.getElementById("boardWidth").value;
+    boardHeight = document.getElementById("boardHeight").value;
     document.getElementById("myCanvas").setAttribute('width', boardWidth * 10 + 1);
     document.getElementById("myCanvas").setAttribute('height', boardHeight * 10 + 1);
     for (var x = 0.5; x < boardWidth * 10 + 1; x += 10) {
@@ -26,18 +27,20 @@ function drawGrid(context) {
     
     context.strokeStyle = "#ddd";
     context.stroke();
-
-    randomize(canvas, context, boardWidth, boardHeight);
+    if (!isDrawEnabled){
+        randomize(context, boardWidth, boardHeight);
+    }
+    else{
+        initializeEmptyCanvas();
+    }
 }
 
 function toggleSquare(context, x, y){
-    if (board[(y - 1) / 10][(x -1) / 10] == "black")
-    {
+    if (board[(y - 1) / 10][(x -1) / 10] == "black"){
         context.fillStyle = "#FFFFFF";
         board[(y - 1) / 10][(x -1) / 10] = "white";
     }
-    else
-    {
+    else{
         context.fillStyle = "#000000";
         board[(y - 1) / 10][(x -1) / 10] = "black";
     }
@@ -45,15 +48,38 @@ function toggleSquare(context, x, y){
     context.fillRect(x,y,9,9);
 }
 
+function restart(){
+    location.reload();
+}
+
+function enableDraw(){
+    document.getElementById("drawButton").classList.add("notShowing");
+    /*document.getElementById("instructionsDiv").innerHTML =
+     "Please Press any squares on the board to paint them black. \
+     If you change your mind about a certain square, press it again to repaint it white. \
+     When you're finished, press the 'Randomize' button."*/
+     canvas.addEventListener('click', function(evt) {
+        var mousePos = getSquare(canvas, evt);
+        toggleSquare(context, mousePos.x, mousePos.y)
+    }, false);
+    drawGrid(context, true);
+}
+
+function handleInputDiv(){
+    document.getElementById("solveButton").classList.remove("notShowing");
+    document.getElementById("randomizeButton").classList.add("notShowing");
+    document.getElementById("drawButton").classList.add("notShowing");
+    // document.getElementById("instructionsDiv").classList.add("notShowing");
+}
+
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
 
 // drawGrid(context);
 
-canvas.addEventListener('click', function(evt) {
-    var mousePos = getSquare(canvas, evt);
-    toggleSquare(context, mousePos.x, mousePos.y)
-}, false);
+
+
+
 
 //--------------------------------------------------------------------
 //Randomize

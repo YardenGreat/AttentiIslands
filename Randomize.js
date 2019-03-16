@@ -1,23 +1,32 @@
 "use strict";
 
-function randomize(canvas, context, boardWidth, boardHeight){
+function randomize(context, boardWidth, boardHeight){
     var normalizedX, normalizedY;
-    board = new Array(boardWidth);
+    board = new Array(boardHeight);
 
-    for (var x = 0.5; x < boardWidth * 10; x += 10) {
+    for (var x = 0.5; x < boardHeight * 10; x += 10) {
         normalizedX = normalize(x);
-        board[normalizedX] = new Array(boardHeight);
-        for (var y = 0.5; y < boardHeight * 10; y += 10) {
+        board[normalizedX] = new Array(boardWidth);
+        for (var y = 0.5; y < boardWidth * 10; y += 10) {
             normalizedY = normalize(y);
-            if (Math.round(Math.random()) == 1)
-            {
+            if (Math.round(Math.random()) == 1){
                 board[normalizedX][normalizedY] = "black";
                 colorSquare(context, y + 0.5, x + 0.5);
             }
-            else
-            {
+            else{
                 board[normalizedX][normalizedY] = "white";
             }        
+        }
+    }
+}
+
+function initializeEmptyCanvas(boardWidth, boardHeight){
+    board = new Array(boardHeight);
+
+    for (var x = 0; x < boardHeight ; x++) {
+        board[x] = new Array(boardWidth);
+        for (var y = 0; y < boardWidth; y ++) {
+            board[x][y] = "white";
         }
     }
 }
