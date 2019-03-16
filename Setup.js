@@ -54,11 +54,11 @@ function restart(){
 
 function enableDraw(){
     document.getElementById("drawButton").classList.add("notShowing");
-    /*document.getElementById("instructionsDiv").innerHTML =
+    document.getElementById("instructionsDiv").innerHTML =
      "Please Press any squares on the board to paint them black. \
      If you change your mind about a certain square, press it again to repaint it white. \
-     When you're finished, press the 'Randomize' button."*/
-     canvas.addEventListener('click', function(evt) {
+     When you're finished, press the 'Solve' button."
+    canvas.addEventListener('click', function(evt) {
         var mousePos = getSquare(canvas, evt);
         toggleSquare(context, mousePos.x, mousePos.y)
     }, false);
@@ -74,6 +74,7 @@ function handleInputDiv(){
 
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
+
 
 // drawGrid(context);
 

@@ -20,10 +20,10 @@ function randomize(context, boardWidth, boardHeight){
     }
 }
 
-function initializeEmptyCanvas(boardWidth, boardHeight){
+function initializeEmptyCanvas(){
     board = new Array(boardHeight);
 
-    for (var x = 0; x < boardHeight ; x++) {
+    for (var x = 0; x < boardHeight; x++) {
         board[x] = new Array(boardWidth);
         for (var y = 0; y < boardWidth; y ++) {
             board[x][y] = "white";
