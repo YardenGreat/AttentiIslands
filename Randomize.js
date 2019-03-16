@@ -1,6 +1,6 @@
 "use strict";
 
-function randomize(context, boardWidth, boardHeight){
+function randomize(){
     var normalizedX, normalizedY;
     board = new Array(boardHeight);
 

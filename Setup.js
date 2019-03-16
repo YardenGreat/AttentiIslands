@@ -17,21 +17,21 @@ function drawGrid(context, isDrawEnabled) {
     document.getElementById("myCanvas").setAttribute('height', boardHeight * 10 + 1);
     for (var x = 0.5; x < boardWidth * 10 + 1; x += 10) {
       context.moveTo(x, 0);
-      context.lineTo(x, boardWidth * 10);
+      context.lineTo(x, boardHeight * 10);
     }
     
     for (var y = 0.5; y < boardHeight * 10 + 1; y += 10) {
       context.moveTo(0, y);
-      context.lineTo(boardHeight * 10, y);
+      context.lineTo(boardWidth * 10, y);
     }
     
     context.strokeStyle = "#ddd";
     context.stroke();
-    if (!isDrawEnabled){
-        randomize(context, boardWidth, boardHeight);
+    if (isDrawEnabled){
+        initializeEmptyCanvas();       
     }
     else{
-        initializeEmptyCanvas();
+        randomize();      
     }
 }
 

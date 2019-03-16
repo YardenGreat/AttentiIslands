@@ -15,10 +15,11 @@ var currentColorIndex = 0;
 function solve(){
     document.getElementById("solveButton").classList.add("notShowing");
     document.getElementById("restartButton").classList.remove("notShowing");
+    document.getElementById("instructionsDiv").classList.add("invisible");
     var row, column;
     var numberOfIslands = 0;
-    for (row = 0; row < boardWidth; row++){
-        for (column = 0; column < boardHeight; column++){
+    for (row = 0; row < boardHeight; row++){
+        for (column = 0; column < boardWidth; column++){
             if (isBlack(row, column)){
                 colorIsland(row, column);
                 currentColorIndex++;
@@ -30,8 +31,8 @@ function solve(){
             }
         }
     }
-
-    console.log(numberOfIslands);
+    var resultDiv = document.getElementById("resultDiv");
+    resultDiv.innerHTML = `Found ${numberOfIslands} ${(numberOfIslands == 1 ? "island!" : "islands!")}`
 }
 
 function isBlack(row, column){

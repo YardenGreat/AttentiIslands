@@ -11,3 +11,15 @@
  .notShowing{
     display: none;
  }
+
+ .invisible{
+    visibility: hidden;
+ }
+
+ div{
+    margin-top: 10px;
+ }
+
+ #resultDiv{
+    margin: auto;
+ }
