@@ -32,6 +32,7 @@ function solve(){
         }
     }
     var resultDiv = document.getElementById("resultDiv");
+    resultDiv.classList.remove("invisible");
     resultDiv.innerHTML = `Found ${numberOfIslands} ${(numberOfIslands == 1 ? "island!" : "islands!")}`
 }
 
